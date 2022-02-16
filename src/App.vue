@@ -1,7 +1,11 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> |
+    <router-link to="/support">Podpora</router-link> |
+    <a href="https://www.kalhotkomat.cz" target="_blank">E-shop</a> |
+    <router-link to="/journal">Žurnál</router-link> |
+    <router-link to="/contact">Kontakt</router-link>
   </div>
   <router-view/>
 </template>
