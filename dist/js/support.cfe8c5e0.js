@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["support"],{"1deb":function(s,e,n){"use strict";n.r(e);var t=n("7a23"),p={class:"support"},r=Object(t["f"])("h1",null,"This is support page",-1),c=[r];function o(s,e){return Object(t["s"])(),Object(t["e"])("div",p,c)}var u=n("6b0d"),a=n.n(u);const i={},b=a()(i,[["render",o]]);e["default"]=b}}]);
+//# sourceMappingURL=support.cfe8c5e0.js.map
