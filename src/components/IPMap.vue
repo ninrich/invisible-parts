@@ -8,9 +8,8 @@
         v-for="place in places"
         :key="place.id"
         :lat-lng="[place.x, place.y]"
-    >
-      <LPopup>{{place}}</LPopup>
-    </LMarker>
+        @click="onMarkerClick(place)"
+    />
     <LTileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
@@ -18,15 +17,15 @@
 </template>
 
 <script>
-import { LMap, LPopup, LMarker, LTileLayer } from "@vue-leaflet/vue-leaflet";
+import { LMap, LMarker, LTileLayer } from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
 import data from "../data/data.json";
+import {mapMutations} from "vuex";
 
 export default {
   name: "IPMap",
   components: {
     LMap,
-    LPopup,
     LMarker,
     LTileLayer
   },
@@ -45,7 +44,17 @@ export default {
       }
       console.log(allCoordinates)
       this.$refs.IPMap.leafletObject.fitBounds(allCoordinates);
-    }
+    },
+
+    onMarkerClick(place) {
+      this.setCurrentPlace({newCurrentPlace: place});
+      this.openPopup();
+    },
+
+    ...mapMutations([
+        'openPopup',
+        'setCurrentPlace'
+    ])
   }
 }
 </script>
