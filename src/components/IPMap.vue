@@ -2,7 +2,7 @@
   <LMap
       ref="IPMap"
       id="ip-map"
-      @ready="tessst"
+      @ready="fitPlacesToBounds"
   >
     <LMarker
         v-for="place in places"
@@ -38,14 +38,13 @@ export default {
     }
   },
   methods: {
-    tessst() {
+    fitPlacesToBounds() {
       let allCoordinates = []
       for (const place of this.places) {
         allCoordinates.push([place.x, place.y])
       }
       console.log(allCoordinates)
       this.$refs.IPMap.leafletObject.fitBounds(allCoordinates);
-      // alert("test")
     }
   }
 }
