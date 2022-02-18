@@ -12,7 +12,21 @@ import {mapMutations, mapState} from "vuex";
 
 export default {
   name: "IPPopup",
+  watch: {
+    popupOpen(newValue) {
+      if (newValue === true) {
+        window.addEventListener("keydown", this.escKeyListener);
+      } else {
+        window.removeEventListener("keydown", this.escKeyListener);
+      }
+    }
+  },
   methods: {
+    escKeyListener(event) {
+      if (event.key === "Escape") {
+        this.closePopup();
+      }
+    },
     ...mapMutations([
         'closePopup'
     ])

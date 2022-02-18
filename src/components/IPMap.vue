@@ -5,7 +5,7 @@
       @ready="fitPlacesToBounds"
   >
     <LMarker
-        v-for="place in places"
+        v-for="place in filteredPlaces"
         :key="place.id"
         :lat-lng="[place.x, place.y]"
         @click="onMarkerClick(place)"
@@ -19,8 +19,7 @@
 <script>
 import { LMap, LMarker, LTileLayer } from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
-import data from "../data/data.json";
-import {mapMutations} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 
 export default {
   name: "IPMap",
@@ -29,21 +28,29 @@ export default {
     LMarker,
     LTileLayer
   },
-  setup() {
-    const places = data;
 
-    return {
-      places
+  watch: {
+    filteredPlaces(newValue) {
+      // This if statement  is necessary because fitBounds borks if there is only one [lat, lng] pair.
+      if (newValue.length === 1)
+        this.flyToPlace(newValue[0])
+      else if (newValue.length > 1)
+        this.fitPlacesToBounds();
     }
   },
+
   methods: {
+    flyToPlace(place) {
+      this.$refs.IPMap.leafletObject.flyTo([place.x, place.y], 14);
+    },
+
     fitPlacesToBounds() {
       let allCoordinates = []
-      for (const place of this.places) {
+      for (const place of this.filteredPlaces) {
         allCoordinates.push([place.x, place.y])
       }
-      console.log(allCoordinates)
-      this.$refs.IPMap.leafletObject.fitBounds(allCoordinates);
+      if (allCoordinates.length > 0)
+        this.$refs.IPMap.leafletObject.fitBounds(allCoordinates, {animate: true, duration: 1});
     },
 
     onMarkerClick(place) {
@@ -54,6 +61,12 @@ export default {
     ...mapMutations([
         'openPopup',
         'setCurrentPlace'
+    ])
+  },
+
+  computed: {
+    ...mapGetters([
+        'filteredPlaces'
     ])
   }
 }
