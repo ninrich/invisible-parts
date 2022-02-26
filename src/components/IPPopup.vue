@@ -1,8 +1,11 @@
 <template>
 <div class="backdrop" v-show="popupOpen">
-  <div class="close-button" @click="closePopup">X</div>
   <div class="content" v-if="currentPlace">
-    {{currentPlace}}
+    <div class="close-button" @click="closePopup">Zavrieť</div>
+    <h1 v-if="currentPlace.name">{{ currentPlace.name }}</h1>
+    <h2 v-if="currentPlace.author">{{ currentPlace.author }}</h2>
+    <h3 v-if="currentPlace.year">{{ currentPlace.year }}</h3>
+    <p v-if="currentPlace.context">{{ currentPlace.context }}</p>
   </div>
 </div>
 </template>
@@ -53,9 +56,8 @@ export default {
 }
 
 .close-button {
-  position: absolute;
-  top: 1em;
-  right: 1em;
+  width: 100%;
+  text-align: center;
   font-size: 3em;
   cursor: pointer;
 }
@@ -64,6 +66,5 @@ export default {
   background-color: white;
   width: 500px;
   margin: auto;
-  margin-top: 3em;
 }
 </style>

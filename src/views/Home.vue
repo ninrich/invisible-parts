@@ -26,8 +26,10 @@ export default {
 
 <style scoped>
 .ip-map-container {
-  width: 100%;
-  height: 500px;
-  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 </style>

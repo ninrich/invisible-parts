@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import "./assets/styles.css";
+
 import data from "./data/data.json";
 
 const authors = new Set();

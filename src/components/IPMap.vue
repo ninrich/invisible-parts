@@ -2,8 +2,12 @@
   <LMap
       ref="IPMap"
       id="ip-map"
+
       @ready="fitPlacesToBounds"
+
+      :options="mapOptions"
   >
+    <LControlZoom position="bottomleft"/>
     <LMarker
         v-for="place in filteredPlaces"
         :key="place.id"
@@ -11,13 +15,13 @@
         @click="onMarkerClick(place)"
     />
     <LTileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url="https://api.mapbox.com/styles/v1/monboxsk/cl04ee4di003k14ljrxntr1u1/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibW9uYm94c2siLCJhIjoiY2t2bnl1b3RwMHBlZDJwanA5cHRoMjlrbSJ9.guzPF5j_d-c4S_cvvgnvug"
     />
   </LMap>
 </template>
 
 <script>
-import { LMap, LMarker, LTileLayer } from "@vue-leaflet/vue-leaflet";
+import { LMap, LMarker, LTileLayer, LControlZoom } from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
 import {mapGetters, mapMutations} from "vuex";
 
@@ -26,7 +30,19 @@ export default {
   components: {
     LMap,
     LMarker,
-    LTileLayer
+    LTileLayer,
+    LControlZoom
+  },
+
+  data() {
+    return {
+      mapOptions: {
+        attributionControl: false,
+        zoomControl: false,
+        // zoomSnap 0.1 shows undesired gridlines on desktop
+        // zoomSnap: f7.device.desktop ? 1 : 0.1
+      },
+    }
   },
 
   watch: {
