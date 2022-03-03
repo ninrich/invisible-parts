@@ -1,3 +1,13 @@
+@font-face {
+  font-family: Nunito;
+  src: url(Nunito-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: NunitoItalic;
+  src: url(Nunito-Italic-VariableFont_wght.ttf);
+}
+
 body {
   margin: 0;
   overflow: hidden;

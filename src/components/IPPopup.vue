@@ -1,11 +1,16 @@
 <template>
 <div class="backdrop" v-show="popupOpen">
   <div class="content" v-if="currentPlace">
-    <div class="close-button" @click="closePopup">Zavrieť</div>
     <h1 v-if="currentPlace.name">{{ currentPlace.name }}</h1>
-    <h2 v-if="currentPlace.author">{{ currentPlace.author }}</h2>
-    <h3 v-if="currentPlace.year">{{ currentPlace.year }}</h3>
-    <p v-if="currentPlace.context">{{ currentPlace.context }}</p>
+    <h2 v-if="currentPlace.author">Autor: {{ currentPlace.author }}</h2>
+    <h3 v-if="currentPlace.year">Rok: {{ currentPlace.year }}</h3>
+    <h3 v-if="currentPlace.address">Adresa: {{ currentPlace.address }}</h3>
+    <h3 v-if="currentPlace.type">Typ diela: {{ currentPlace.type }}</h3>
+    <h3 v-if="currentPlace.condition">Stav: {{ currentPlace.condition }}</h3>
+    <h3 v-if="currentPlace.accessibility">Prístupnosť: {{ currentPlace.accessibility }}</h3>
+
+    <p v-if="currentPlace.information">{{ currentPlace.information }}</p>
+    <div class="close-button" @click="closePopup">Zavrieť</div>
   </div>
 </div>
 </template>
@@ -64,7 +69,15 @@ export default {
 
 .content {
   background-color: white;
-  width: 500px;
+  width: 960px;
+  height: 100vh;
+  overflow-y: auto;
   margin: auto;
+}
+
+@media screen and (max-width: 960px) {
+  .content {
+    width: 100%;
+  }
 }
 </style>

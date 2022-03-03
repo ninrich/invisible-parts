@@ -116,8 +116,8 @@ export default {
   position: absolute;
   right: 10px;
   bottom: 10px;
-  height: 5vh;
-  width: 5vh;
+  height: 32px;
+  width: 32px;
   background-color: #2c84cb;
 
   z-index: 50000;

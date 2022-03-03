@@ -26,7 +26,8 @@ export default {
   -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
   width: 100%;
-  padding: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 #nav a {

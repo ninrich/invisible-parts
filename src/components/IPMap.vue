@@ -13,7 +13,11 @@
         :key="place.id"
         :lat-lng="[place.x, place.y]"
         @click="onMarkerClick(place)"
-    />
+    >
+      <LTooltip>
+        {{place.name}}
+      </LTooltip>
+    </LMarker>
     <LTileLayer
         url="https://api.mapbox.com/styles/v1/monboxsk/cl04ee4di003k14ljrxntr1u1/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibW9uYm94c2siLCJhIjoiY2t2bnl1b3RwMHBlZDJwanA5cHRoMjlrbSJ9.guzPF5j_d-c4S_cvvgnvug"
     />
@@ -21,7 +25,7 @@
 </template>
 
 <script>
-import { LMap, LMarker, LTileLayer, LControlZoom } from "@vue-leaflet/vue-leaflet";
+import {LMap, LMarker, LTileLayer, LControlZoom, LTooltip} from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
 import {mapGetters, mapMutations} from "vuex";
 
@@ -30,6 +34,7 @@ export default {
   components: {
     LMap,
     LMarker,
+    LTooltip,
     LTileLayer,
     LControlZoom
   },
