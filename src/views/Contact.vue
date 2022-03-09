@@ -21,6 +21,7 @@
       <textarea id="message" name="message" v-model="message"></textarea>
       <br/>
       <vue-recaptcha
+          class="captcha-badge"
           ref="invisibleRecaptcha"
           @verify="onVerify"
           @expired="onExpired"
@@ -101,11 +102,15 @@ export default {
 
 <style scoped>
 .contact {
-  margin-top: 90px;
+  padding-top: 90px;
   height: calc(100vh - 90px);
   overflow-y: auto;
 
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.captcha-badge {
+  display: none;
 }
 </style>
