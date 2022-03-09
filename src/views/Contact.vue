@@ -110,6 +110,10 @@ export default {
   padding-right: 20px;
 }
 
+.contact::-webkit-scrollbar {
+  display: none;
+}
+
 .captcha-badge {
   display: none;
 }

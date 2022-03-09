@@ -23,8 +23,12 @@
 
 <style scoped>
 .about {
-  margin-top: 90px;
+  padding-top: 90px;
   height: calc(100vh - 90px);
-  overflow-y: auto;
+  overflow-y: hidden;
+}
+
+.about::-webkit-scrollbar {
+  display: none;
 }
 </style>
