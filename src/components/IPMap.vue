@@ -19,13 +19,14 @@
       </LTooltip>
     </LMarker>
     <LTileLayer
-        url="https://api.mapbox.com/styles/v1/monboxsk/cl04ee4di003k14ljrxntr1u1/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibW9uYm94c2siLCJhIjoiY2t2bnl1b3RwMHBlZDJwanA5cHRoMjlrbSJ9.guzPF5j_d-c4S_cvvgnvug"
+        :url="'https://api.mapbox.com/styles/v1/monboxsk/cl04ee4di003k14ljrxntr1u1/tiles/256/{z}/{x}/{y}@2x?access_token=' + mapboxToken"
     />
   </LMap>
 </template>
 
 <script>
 import {LMap, LMarker, LTileLayer, LControlZoom, LTooltip} from "@vue-leaflet/vue-leaflet";
+import { MAPBOX_ACCESS_TOKEN } from "@/api-keys";
 import "leaflet/dist/leaflet.css";
 import {mapGetters, mapMutations} from "vuex";
 
@@ -41,6 +42,7 @@ export default {
 
   data() {
     return {
+      mapboxToken: MAPBOX_ACCESS_TOKEN,
       mapOptions: {
         attributionControl: false,
         zoomControl: false,
