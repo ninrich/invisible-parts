@@ -10,13 +10,14 @@
     <h3 v-if="currentPlace.accessibility">Prístupnosť: {{ currentPlace.accessibility }}</h3>
 
     <p v-if="currentPlace.information">{{ currentPlace.information }}</p>
-    <div class="close-button" @click="closePopup">Zavrieť</div>
+    <div class="close-button" @click="unsetCurrentPlaceAndClosePopup">Zavrieť</div>
   </div>
 </div>
 </template>
 
 <script>
 import {mapMutations, mapState} from "vuex";
+import router from "@/router";
 
 export default {
   name: "IPPopup",
@@ -31,14 +32,28 @@ export default {
       }
     }
   },
+  
+  created() {
+    const placeId = parseInt(this.$route.params.placeId);
+    this.setCurrentPlaceById({newPlaceId: placeId})
+  },
+
   methods: {
+    unsetCurrentPlaceAndClosePopup() {
+      this.unsetCurrentPlace();
+      this.closePopup();
+      router.push({name: 'Home'});
+    },
+
     escKeyListener(event) {
       if (event.key === "Escape") {
-        this.closePopup();
+        this.unsetCurrentPlaceAndClosePopup();
       }
     },
     ...mapMutations([
-        'closePopup'
+        'setCurrentPlaceById',
+        'closePopup',
+        'unsetCurrentPlace'
     ])
   },
   computed: {
