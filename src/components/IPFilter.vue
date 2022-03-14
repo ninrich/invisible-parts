@@ -134,23 +134,39 @@ export default {
   text-align: right;
   color: white;
   background-color: rgba(0, 0, 0, 0.50);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 .filter-close-button {
-  padding: 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  /* https://stackoverflow.com/a/4915529/8678845 */
+  height: 3em;
+  line-height: 3em;
+
+  cursor: pointer;
   width: 100%;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.25);
   color: white;
-  /*transform: rotate(90deg);*/
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .filter-content {
   overflow: auto;
-  height: 100%;
+  height: calc(100% - 3em);
+  padding-top: 3em;
   padding-right: 30px;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.filter-content::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (max-width: 960px) {
