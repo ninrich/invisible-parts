@@ -48,7 +48,7 @@ const router = createRouter({
 router.afterEach((to) => {
   nextTick(() => {
     const customTitle = to.meta.title;
-    document.title = customTitle ? customTitle + " | Invisible parts" : "Invisible parts";
+    document.title = customTitle ? customTitle + " | Invisible Parts" : "Invisible Parts";
   })
 })
 

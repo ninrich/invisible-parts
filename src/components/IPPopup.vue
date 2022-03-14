@@ -23,8 +23,10 @@ export default {
   watch: {
     popupOpen(newValue) {
       if (newValue === true) {
+        document.title = this.currentPlace.name + " | Invisible Parts";
         window.addEventListener("keydown", this.escKeyListener);
       } else {
+        document.title = "Invisible Parts";
         window.removeEventListener("keydown", this.escKeyListener);
       }
     }
