@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import router from "@/router";
 
 export default createStore({
   state: {
@@ -67,6 +68,7 @@ export default createStore({
     },
 
     closePopup(state) {
+      router.push({name: 'Home'});
       state.popupOpen = false;
     },
 
@@ -76,6 +78,10 @@ export default createStore({
 
     unsetCurrentPlace(state) {
       state.currentPlace = null;
+    },
+
+    setCurrentPlaceById(state, payload) {
+      state.currentPlace = state.places.find(place => place.id === payload.newPlaceId)
     }
   },
   actions: {

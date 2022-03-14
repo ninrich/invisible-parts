@@ -29,6 +29,7 @@ import {LMap, LMarker, LTileLayer, LControlZoom, LTooltip} from "@vue-leaflet/vu
 import { MAPBOX_ACCESS_TOKEN } from "@/api-keys";
 import "leaflet/dist/leaflet.css";
 import {mapGetters, mapMutations} from "vuex";
+import router from "@/router";
 
 export default {
   name: "IPMap",
@@ -78,6 +79,7 @@ export default {
 
     onMarkerClick(place) {
       this.setCurrentPlace({newCurrentPlace: place});
+      router.push({name:"Detail", params: {placeId: place.id}})
       this.openPopup();
     },
 
