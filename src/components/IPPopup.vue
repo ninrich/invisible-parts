@@ -1,66 +1,45 @@
 <template>
-<div class="backdrop" v-show="popupOpen">
-  <div class="content" v-if="currentPlace">
-    <h1 v-if="currentPlace.name">{{ currentPlace.name }}</h1>
-    <h2 v-if="currentPlace.author">Autor: {{ currentPlace.author }}</h2>
-    <h3 v-if="currentPlace.year">Rok: {{ currentPlace.year }}</h3>
-    <h3 v-if="currentPlace.address">Adresa: {{ currentPlace.address }}</h3>
-    <h3 v-if="currentPlace.type">Typ diela: {{ currentPlace.type }}</h3>
-    <h3 v-if="currentPlace.condition">Stav: {{ currentPlace.condition }}</h3>
-    <h3 v-if="currentPlace.accessibility">Prístupnosť: {{ currentPlace.accessibility }}</h3>
+<div class="backdrop" v-if="place">
+  <div class="content">
+    <h1 v-if="place.name">{{ place.name }}</h1>
+    <h2 v-if="place.author">Autor: {{ place.author }}</h2>
+    <h3 v-if="place.year">Rok: {{ place.year }}</h3>
+    <h3 v-if="place.address">Adresa: {{ place.address }}</h3>
+    <h3 v-if="place.type">Typ diela: {{ place.type }}</h3>
+    <h3 v-if="place.condition">Stav: {{ place.condition }}</h3>
+    <h3 v-if="place.accessibility">Prístupnosť: {{ place.accessibility }}</h3>
 
-    <p v-if="currentPlace.information">{{ currentPlace.information }}</p>
-    <div class="close-button" @click="unsetCurrentPlaceAndClosePopup">Zavrieť</div>
+    <p v-if="place.information">{{ place.information }}</p>
+    <div class="close-button" @click="closeDetail">Zavrieť</div>
   </div>
 </div>
 </template>
 
 <script>
-import {mapMutations, mapState} from "vuex";
 import router from "@/router";
 
 export default {
   name: "IPPopup",
-  watch: {
-    popupOpen(newValue) {
-      if (newValue === true) {
-        document.title = this.currentPlace.name + " | Invisible Parts";
-        window.addEventListener("keydown", this.escKeyListener);
-      } else {
-        document.title = "Invisible Parts";
-        window.removeEventListener("keydown", this.escKeyListener);
-      }
-    }
+  props: ['place'],
+
+  mounted() {
+    window.addEventListener("keydown", this.escKeyListener);
   },
-  
-  created() {
-    const placeId = parseInt(this.$route.params.placeId);
-    this.setCurrentPlaceById({newPlaceId: placeId})
+
+  unmounted() {
+    window.removeEventListener("keydown", this.escKeyListener);
   },
 
   methods: {
-    unsetCurrentPlaceAndClosePopup() {
-      this.unsetCurrentPlace();
-      this.closePopup();
+    closeDetail() {
       router.push({name: 'Home'});
     },
 
     escKeyListener(event) {
       if (event.key === "Escape") {
-        this.unsetCurrentPlaceAndClosePopup();
+        this.closeDetail();
       }
     },
-    ...mapMutations([
-        'setCurrentPlaceById',
-        'closePopup',
-        'unsetCurrentPlace'
-    ])
-  },
-  computed: {
-    ...mapState([
-        'popupOpen',
-        'currentPlace'
-    ])
   }
 }
 </script>

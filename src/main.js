@@ -19,4 +19,4 @@ store.commit('setPlaces', {newPlaces: data});
 store.commit('setAuthors', {newAuthors: authors});
 store.commit('setHoods', {newHoods: hoods});
 
-createApp(App).use(store).use(router).mount('#app');
+router.app = createApp(App).use(store).use(router).mount('#app');

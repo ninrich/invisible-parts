@@ -8,7 +8,8 @@ export default createStore({
     authors: null,
     filteredAuthors: null,
     places: null,
-    currentPlace: null
+    currentPlace: null,
+    currentPlaceName: ""
   },
   mutations: {
     setPlaces(state, payload) {
@@ -74,6 +75,10 @@ export default createStore({
       state.currentPlace = payload.newCurrentPlace;
     },
 
+    setCurrentPlaceName(state, payload) {
+      state.currentPlaceName = payload.newCurrentPlaceName;
+    },
+
     unsetCurrentPlace(state) {
       state.currentPlace = null;
     },
@@ -86,7 +91,7 @@ export default createStore({
       }
       state.currentPlace = place;
       console.log(place)
-    }
+    },
   },
   actions: {
   },
@@ -97,6 +102,10 @@ export default createStore({
       });
       console.log(filteredPlaces);
       return filteredPlaces;
+    },
+
+    getPlaceById: (state) => (placeId) => {
+      return state.places.find(place => place.id === placeId)
     }
   },
   modules: {

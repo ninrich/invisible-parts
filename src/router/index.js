@@ -9,15 +9,28 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    beforeEnter () {
-      document.title = "Invisible Parts";
-    },
-      children: [
+    meta: { title: () => { return "" } },
+    children: [
       {
         path: '/:placeId(\\d+)',
         name: 'Detail',
         component: IPPopup,
-        meta: { title: () => { return store.state.currentPlace ? store.state.currentPlace.name : "" } },
+        meta: { title: () => { return store.state.currentPlaceName } },
+        props: true,
+        beforeEnter(to, from, next) {
+          const placeId = parseInt(to.params.placeId);
+          const place = store.getters['getPlaceById'](placeId);
+          if (place === undefined) {
+            next({name:'Home'})
+          } else {
+            // Used as a title in the meta property of this route.
+            // I chose this so all window.title management is done within this file.
+            store.commit("setCurrentPlaceName", {newCurrentPlaceName: place.name})
+
+            to.params.place = place;
+            next()
+          }
+        },
       }
     ]
   },
@@ -60,10 +73,6 @@ const router = createRouter({
 // https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609
 router.afterEach((to) => {
   nextTick(() => {
-    // if (store.state.currentPlace) {
-    //   document.title = store.state.currentPlace.name + " | Invisible Parts";
-    //   return
-    // }
     const customTitle = to.meta.title(to);
     document.title = customTitle ? customTitle + " | Invisible Parts" : "Invisible Parts";
   })
