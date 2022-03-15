@@ -1,5 +1,9 @@
 # invisible-parts
 
+## TODO
+- favicon
+- redirect all subroutes such as "/a/b/c/d" to home - might be webpack issue
+
 ## Project setup
 ```
 npm install
