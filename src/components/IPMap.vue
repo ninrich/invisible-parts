@@ -12,7 +12,7 @@
         v-for="place in filteredPlaces"
         :key="place.id"
         :lat-lng="[place.x, place.y]"
-        @click="onMarkerClick(place)"
+        @click="openPlaceDetailPopup(place)"
     >
       <LTooltip>
         {{place.name}}
@@ -28,7 +28,7 @@
 import {LMap, LMarker, LTileLayer, LControlZoom, LTooltip} from "@vue-leaflet/vue-leaflet";
 import { MAPBOX_ACCESS_TOKEN } from "@/api-keys";
 import "leaflet/dist/leaflet.css";
-import {mapGetters, mapMutations} from "vuex";
+import {mapGetters} from "vuex";
 import router from "@/router";
 
 export default {
@@ -77,16 +77,9 @@ export default {
         this.$refs.IPMap.leafletObject.fitBounds(allCoordinates, {animate: true, duration: 1});
     },
 
-    onMarkerClick(place) {
-      this.setCurrentPlace({newCurrentPlace: place});
+    openPlaceDetailPopup(place) {
       router.push({name:"Detail", params: {placeId: place.id}})
-      this.openPopup();
     },
-
-    ...mapMutations([
-        'openPopup',
-        'setCurrentPlace'
-    ])
   },
 
   computed: {

@@ -1,14 +1,12 @@
-import { createStore } from 'vuex'
+import {createStore} from 'vuex'
 
 export default createStore({
   state: {
-    popupOpen: true,
     hoods: null,
     filteredHoods: null,
     authors: null,
     filteredAuthors: null,
     places: null,
-    currentPlace: null,
     currentPlaceName: ""
   },
   mutations: {
@@ -63,45 +61,17 @@ export default createStore({
       state.filteredHoods.clear();
     },
 
-    openPopup(state) {
-      state.popupOpen = true;
-    },
-
-    closePopup(state) {
-      state.popupOpen = false;
-    },
-
-    setCurrentPlace(state, payload) {
-      state.currentPlace = payload.newCurrentPlace;
-    },
-
     setCurrentPlaceName(state, payload) {
       state.currentPlaceName = payload.newCurrentPlaceName;
-    },
-
-    unsetCurrentPlace(state) {
-      state.currentPlace = null;
-    },
-
-    setCurrentPlaceById(state, payload) {
-      const place = state.places.find(place => place.id === payload.newPlaceId)
-      if (!place) {
-        alert("not found")
-        return false;
-      }
-      state.currentPlace = place;
-      console.log(place)
     },
   },
   actions: {
   },
   getters: {
     filteredPlaces(state) {
-      const filteredPlaces = state.places.filter( place => {
+      return state.places.filter(place => {
         return state.filteredHoods.has(place.hood) && state.filteredAuthors.has(place.author);
       });
-      console.log(filteredPlaces);
-      return filteredPlaces;
     },
 
     getPlaceById: (state) => (placeId) => {
