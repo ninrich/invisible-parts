@@ -7,7 +7,6 @@ export default createStore({
     authors: null,
     filteredAuthors: null,
     places: null,
-    currentPlaceName: ""
   },
   mutations: {
     setPlaces(state, payload) {
@@ -59,10 +58,6 @@ export default createStore({
     unsetAllFilters(state) {
       state.filteredAuthors.clear();
       state.filteredHoods.clear();
-    },
-
-    setCurrentPlaceName(state, payload) {
-      state.currentPlaceName = payload.newCurrentPlaceName;
     },
   },
   actions: {

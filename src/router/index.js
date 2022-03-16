@@ -15,7 +15,6 @@ const routes = [
         path: '/:placeId(\\d+)',
         name: 'Detail',
         component: IPPopup,
-        meta: { title: () => { return store.state.currentPlaceName } },
         props: true,
         beforeEnter(to, from, next) {
           const placeId = parseInt(to.params.placeId);
@@ -23,10 +22,7 @@ const routes = [
           if (place === undefined) {
             next({name:'Home'})
           } else {
-            // Used as a title in the meta property of this route.
-            // I chose this so all window.title management is done within this file.
-            store.commit("setCurrentPlaceName", {newCurrentPlaceName: place.name})
-
+            to.meta.title = () => { return place.name }
             to.params.place = place;
             next()
           }
