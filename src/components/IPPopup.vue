@@ -1,16 +1,55 @@
 <template>
 <div class="backdrop" v-if="place">
   <div class="content">
-    <h1 v-if="place.name">{{ place.name }}</h1>
-    <h2 v-if="place.author">Autor: {{ place.author }}</h2>
-    <h3 v-if="place.year">Rok: {{ place.year }}</h3>
-    <h3 v-if="place.address">Adresa: {{ place.address }}</h3>
-    <h3 v-if="place.type">Typ diela: {{ place.type }}</h3>
-    <h3 v-if="place.condition">Stav: {{ place.condition }}</h3>
-    <h3 v-if="place.accessibility">Prístupnosť: {{ place.accessibility }}</h3>
 
-    <p v-if="place.information">{{ place.information }}</p>
-    <div class="close-button" @click="closeDetail">Zavrieť</div>
+    <div class="header">
+      <div class="col-66 header-left">
+        <img class="logo" src="../assets/logo.png" alt="logo invisible parts"/>
+        <span class="place-id">{{ place.id }}</span>
+      </div>
+      <div class="col-34">
+        <button class="close-button" @click="closePopup">X</button>
+      </div>
+    </div>
+
+    <div class="col-66 photos">
+
+    </div>
+    <div class="col-34 information">
+      <div>
+        <span class="attribute">Názov diela: </span><span v-if="place.name" class="value">{{ place.name }}</span>
+      </div>
+      <div>
+        <span class="attribute">Typ diela: </span><span v-if="place.type" class="value">{{ place.type }}</span>
+      </div>
+      <div>
+        <span class="attribute">Meno autora: </span><span v-if="place.author" class="value">{{ place.author }}</span>
+      </div>
+      <div>
+        <span class="attribute">Rok realizácie: </span><span v-if="place.year" class="value">{{ place.year }}</span>
+      </div>
+      <div>
+        <span class="attribute">Aktuálny stav: </span><span v-if="place.condition" class="value">{{ place.condition }}</span>
+      </div>
+      <div>
+        <span class="attribute">Lokalita: </span><span v-if="place.location" class="value">{{ place.location }}</span>
+      </div>
+      <div>
+        <span class="attribute">Prístupnosť: </span><span v-if="place.accessibility" class="value">{{ place.accessibility }}</span>
+      </div>
+      <br>
+      <span class="attribute">Informácie o diele: </span>
+      <div>
+        <span class="attribute">Materiál: </span><span v-if="place.material" class="value">{{ place.material }}</span>
+      </div>
+      <div>
+        <span class="attribute">Technika: </span><span v-if="place.technique" class="value">{{ place.technique }}</span>
+      </div>
+      <div>
+        <span class="attribute">Popis diela:</span><br>
+        <span v-if="place.information" class="value">{{ place.information }}</span>
+      </div>
+    </div>
   </div>
 </div>
 </template>
@@ -31,13 +70,13 @@ export default {
   },
 
   methods: {
-    closeDetail() {
+    closePopup() {
       router.push({name: 'Home'});
     },
 
     escKeyListener(event) {
       if (event.key === "Escape") {
-        this.closeDetail();
+        this.closePopup();
       }
     },
   }
@@ -57,10 +96,23 @@ export default {
 }
 
 .close-button {
-  width: 100%;
   text-align: center;
-  font-size: 3em;
   cursor: pointer;
+  float: right;
+  border: 0;
+  background-color: transparent;
+  color: var(--primary-color);
+  font-weight: bolder;
+  font-size: 2em;
+}
+
+.header {
+}
+
+.header-left {
+  height: 4em;
+
+  position: relative;
 }
 
 .content {
@@ -69,6 +121,46 @@ export default {
   height: 100vh;
   overflow-y: auto;
   margin: auto;
+}
+
+.col-66 {
+  width: 66%;
+  display: inline-block;
+}
+
+.col-34 {
+  width: 34%;
+  display: inline-block;
+}
+
+.logo {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.place-id {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: var(--primary-color);
+  font-weight: bolder;
+}
+
+.photos {
+}
+
+.information {
+  text-align: left;
+}
+
+.attribute {
+  color: var(--primary-color);
+  font-weight: bolder;
+}
+
+.value {
+  color: var(--primary-color)
 }
 
 @media screen and (max-width: 960px) {
