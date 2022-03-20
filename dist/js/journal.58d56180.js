@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["journal"],{baff:function(n,a,e){"use strict";e.r(a);var r=e("7a23"),c={class:"journal"},o=Object(r["h"])("h1",null,"This is a journal page",-1),s=[o];function t(n,a){return Object(r["v"])(),Object(r["g"])("div",c,s)}var u=e("6b0d"),i=e.n(u);const b={},l=i()(b,[["render",t]]);a["default"]=l}}]);
+//# sourceMappingURL=journal.58d56180.js.map

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.4.0",
+    "@splidejs/vue-splide": "^0.5.18",
     "core-js": "^3.6.5",
     "nouislider": "^15.5.1",
     "vue": "^3.0.0",
