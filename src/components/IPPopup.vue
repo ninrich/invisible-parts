@@ -1,5 +1,5 @@
 <template>
-<div class="backdrop" v-if="place">
+  <div class="backdrop" @click="closePopup"></div>
   <div class="content">
     <img class="close-button" @click="closePopup" src="../assets/icon-close.png" />
 
@@ -66,7 +66,6 @@
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -150,12 +149,14 @@ export default {
   overflow-y: scroll;
   margin: auto;
 
-  /* https://stackoverflow.com/a/27532367/8678845 */
-  position: relative;
+  /* https://stackoverflow.com/a/23703655/8678845 */
+  position: absolute;
+  z-index: 11000;
+  left: 50%;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .content::-webkit-scrollbar {
