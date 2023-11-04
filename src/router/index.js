@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import IPPopup from "@/components/IPPopup";
+import IPPopup from "@/components/IPPopup.vue";
 import { nextTick } from 'vue'
 import store from "@/store";
 
@@ -36,23 +36,23 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () => import( '../views/About.vue'),
     meta: { title: () => { return "O Projekte" } },
   },
   {
     path: '/support',
     name: 'Support',
-    component: () => import(/* webpackChunkName: "support" */ '../views/Support.vue')
+    component: () => import( '../views/Support.vue')
   },
   {
     path: '/journal',
     name: 'Journal',
-    component: () => import(/* webpackChunkName: "journal" */ '../views/Journal.vue')
+    component: () => import( '../views/Journal.vue')
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue'),
+    component: () => import('../views/Contact.vue'),
     meta: { title: () => { return "Kontakt" } },
   },
   {
@@ -62,7 +62,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 

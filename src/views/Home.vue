@@ -14,8 +14,8 @@
 
 <script>
 // @ is an alias to /src
-import IPMap from "../components/IPMap";
-import IPFilter from "@/components/IPFilter";
+import IPMap from "../components/IPMap.vue";
+import IPFilter from "@/components/IPFilter.vue";
 // import {mapMutations} from "vuex";
 
 export default {

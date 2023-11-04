@@ -15,7 +15,7 @@
 
 </style>
 <script>
-import IPNavbar from "@/components/IPNavbar";
+import IPNavbar from "@/components/IPNavbar.vue";
 export default {
   components: {IPNavbar}
 }
